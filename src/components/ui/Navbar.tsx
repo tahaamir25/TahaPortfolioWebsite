@@ -1,14 +1,27 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { HiMenu, HiX } from "react-icons/hi";
-import { NAV_LINKS, SITE_NAME } from "@/lib/constants";
+import { FiUser, FiBriefcase, FiCode, FiMail } from "react-icons/fi";
+import type { IconType } from "react-icons";
+import { NAV_LINKS } from "@/lib/constants";
+
+const navIconMap: Record<string, IconType> = {
+  about: FiUser,
+  experience: FiBriefcase,
+  projects: FiCode,
+  contact: FiMail,
+};
+
+const iconSpring = { type: "spring", stiffness: 400, damping: 17 } as const;
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
   const [scrolled, setScrolled] = useState(false);
+  const [hoveredLink, setHoveredLink] = useState<string | null>(null);
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -36,8 +49,6 @@ export default function Navbar() {
     return () => observers.forEach((o) => o.disconnect());
   }, []);
 
-  const handleLinkClick = () => setMenuOpen(false);
-
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
@@ -47,37 +58,64 @@ export default function Navbar() {
       }`}
     >
       <nav className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-        {/* Logo / name */}
+
         <a
           href="#"
-          className="text-sm font-semibold tracking-widest uppercase text-text-primary hover:text-accent transition-colors duration-200"
+          className="w-8 h-8 rounded-md bg-accent/10 border border-accent/20 flex items-center justify-center text-accent text-sm font-bold tracking-tight hover:bg-accent/20 transition-colors duration-200"
+          aria-label="Back to top"
         >
-          {SITE_NAME}
+          TA
         </a>
 
-        {/* Desktop links */}
-        <ul className="hidden md:flex items-center gap-8">
+        <ul className="hidden md:flex items-center gap-1">
           {NAV_LINKS.map(({ label, href }) => {
             const sectionId = href.replace("#", "");
             const isActive = activeSection === sectionId;
+            const isHovered = hoveredLink === href;
+            const Icon = navIconMap[sectionId];
+
             return (
               <li key={href}>
                 <a
                   href={href}
-                  className={`text-sm transition-colors duration-200 ${
+                  onMouseEnter={() => setHoveredLink(href)}
+                  onMouseLeave={() => setHoveredLink(null)}
+                  className={`flex items-center px-3 py-2 rounded-lg transition-colors duration-200 ${
                     isActive
                       ? "text-accent"
                       : "text-muted hover:text-text-primary"
                   }`}
                 >
-                  {label}
+
+                  <motion.span
+                    animate={
+                      !prefersReducedMotion && isHovered
+                        ? { scale: 1.15 }
+                        : { scale: 1.0 }
+                    }
+                    transition={iconSpring}
+                    className="flex items-center leading-none"
+                  >
+                    {Icon && <Icon size={17} />}
+                  </motion.span>
+
+                  <motion.span
+                    animate={{
+                      maxWidth: isHovered ? 72 : 0,
+                      opacity: isHovered ? 1 : 0,
+                      marginLeft: isHovered ? 6 : 0,
+                    }}
+                    transition={{ duration: 0.15, ease: "easeOut" }}
+                    className="overflow-hidden whitespace-nowrap text-sm font-medium"
+                  >
+                    {label}
+                  </motion.span>
                 </a>
               </li>
             );
           })}
         </ul>
 
-        {/* Mobile hamburger */}
         <button
           className="md:hidden text-muted hover:text-text-primary transition-colors duration-200"
           onClick={() => setMenuOpen((prev) => !prev)}
@@ -87,7 +125,6 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {/* Mobile dropdown */}
       <AnimatePresence>
         {menuOpen && (
           <motion.ul
@@ -100,17 +137,23 @@ export default function Navbar() {
             {NAV_LINKS.map(({ label, href }) => {
               const sectionId = href.replace("#", "");
               const isActive = activeSection === sectionId;
+              const Icon = navIconMap[sectionId];
+
               return (
-                <li key={href} className="py-3 border-b border-white/5 last:border-0">
+                <li
+                  key={href}
+                  className="py-3 border-b border-white/5 last:border-0"
+                >
                   <a
                     href={href}
-                    onClick={handleLinkClick}
-                    className={`text-sm transition-colors duration-200 ${
+                    onClick={() => setMenuOpen(false)}
+                    className={`flex items-center gap-3 text-sm transition-colors duration-200 ${
                       isActive
                         ? "text-accent"
                         : "text-muted hover:text-text-primary"
                     }`}
                   >
+                    {Icon && <Icon size={16} />}
                     {label}
                   </a>
                 </li>

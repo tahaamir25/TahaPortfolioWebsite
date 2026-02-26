@@ -27,8 +27,7 @@ export default function Contact() {
       <SectionHeading>Get In Touch</SectionHeading>
 
       <p className="mt-6 text-muted text-base md:text-lg leading-relaxed max-w-md">
-        {/* TODO: Replace with your own message */}
-        TODO: A short line inviting people to reach out — e.g. &ldquo;Open to
+        Reach out — e.g. &ldquo;Open to
         new opportunities, collaborations, or just a good conversation.&rdquo;
       </p>
 
