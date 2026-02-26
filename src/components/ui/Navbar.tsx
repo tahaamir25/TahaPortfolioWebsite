@@ -6,6 +6,7 @@ import { HiMenu, HiX } from "react-icons/hi";
 import { FiUser, FiBriefcase, FiCode, FiMail } from "react-icons/fi";
 import type { IconType } from "react-icons";
 import { NAV_LINKS } from "@/lib/constants";
+import ThemeToggle from "@/components/ui/ThemeToggle";
 
 const navIconMap: Record<string, IconType> = {
   about: FiUser,
@@ -53,8 +54,8 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
         scrolled
-          ? "backdrop-blur-md bg-black/60 border-white/10"
-          : "backdrop-blur-sm bg-black/30 border-transparent"
+          ? "backdrop-blur-md bg-white/80 dark:bg-black/60 border-black/[0.08] dark:border-white/10"
+          : "backdrop-blur-sm bg-white/40 dark:bg-black/30 border-transparent"
       }`}
     >
       <nav className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
@@ -67,62 +68,69 @@ export default function Navbar() {
           TA
         </a>
 
-        <ul className="hidden md:flex items-center gap-1">
-          {NAV_LINKS.map(({ label, href }) => {
-            const sectionId = href.replace("#", "");
-            const isActive = activeSection === sectionId;
-            const isHovered = hoveredLink === href;
-            const Icon = navIconMap[sectionId];
+        <div className="hidden md:flex items-center gap-1">
+          <ul className="flex items-center gap-1">
+            {NAV_LINKS.map(({ label, href }) => {
+              const sectionId = href.replace("#", "");
+              const isActive = activeSection === sectionId;
+              const isHovered = hoveredLink === href;
+              const Icon = navIconMap[sectionId];
 
-            return (
-              <li key={href}>
-                <a
-                  href={href}
-                  onMouseEnter={() => setHoveredLink(href)}
-                  onMouseLeave={() => setHoveredLink(null)}
-                  className={`flex items-center px-3 py-2 rounded-lg transition-colors duration-200 ${
-                    isActive
-                      ? "text-accent"
-                      : "text-muted hover:text-text-primary"
-                  }`}
-                >
-
-                  <motion.span
-                    animate={
-                      !prefersReducedMotion && isHovered
-                        ? { scale: 1.15 }
-                        : { scale: 1.0 }
-                    }
-                    transition={iconSpring}
-                    className="flex items-center leading-none"
+              return (
+                <li key={href}>
+                  <a
+                    href={href}
+                    onMouseEnter={() => setHoveredLink(href)}
+                    onMouseLeave={() => setHoveredLink(null)}
+                    className={`flex items-center px-3 py-2 rounded-lg transition-colors duration-200 ${
+                      isActive
+                        ? "text-accent"
+                        : "text-muted hover:text-text-primary"
+                    }`}
                   >
-                    {Icon && <Icon size={17} />}
-                  </motion.span>
+                    <motion.span
+                      animate={
+                        !prefersReducedMotion && isHovered
+                          ? { scale: 1.15 }
+                          : { scale: 1.0 }
+                      }
+                      transition={iconSpring}
+                      className="flex items-center leading-none"
+                    >
+                      {Icon && <Icon size={17} />}
+                    </motion.span>
 
-                  <motion.span
-                    animate={{
-                      maxWidth: isHovered ? 72 : 0,
-                      opacity: isHovered ? 1 : 0,
-                      marginLeft: isHovered ? 6 : 0,
-                    }}
-                    transition={{ duration: 0.15, ease: "easeOut" }}
-                    className="overflow-hidden whitespace-nowrap text-sm font-medium"
-                  >
-                    {label}
-                  </motion.span>
-                </a>
-              </li>
-            );
-          })}
-        </ul>
+                    <motion.span
+                      animate={{
+                        maxWidth: isHovered ? 72 : 0,
+                        opacity: isHovered ? 1 : 0,
+                        marginLeft: isHovered ? 6 : 0,
+                      }}
+                      transition={{ duration: 0.15, ease: "easeOut" }}
+                      className="overflow-hidden whitespace-nowrap text-sm font-medium"
+                    >
+                      {label}
+                    </motion.span>
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
 
-        <button
-          className="md:hidden text-muted hover:text-text-primary transition-colors duration-200"
-          onClick={() => setMenuOpen((prev) => !prev)}
-          aria-label={menuOpen ? "Close menu" : "Open menu"}
-        >
-          {menuOpen ? <HiX size={22} /> : <HiMenu size={22} />}
-        </button>
+          <div className="w-px h-4 bg-black/10 dark:bg-white/10 mx-2" />
+          <ThemeToggle />
+        </div>
+
+        <div className="md:hidden flex items-center gap-1">
+          <ThemeToggle />
+          <button
+            className="w-8 h-8 flex items-center justify-center text-muted hover:text-text-primary transition-colors duration-200"
+            onClick={() => setMenuOpen((prev) => !prev)}
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+          >
+            {menuOpen ? <HiX size={22} /> : <HiMenu size={22} />}
+          </button>
+        </div>
       </nav>
 
       <AnimatePresence>
@@ -132,7 +140,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="md:hidden flex flex-col backdrop-blur-md bg-black/80 border-t border-white/10 px-6 pb-4"
+            className="md:hidden flex flex-col backdrop-blur-md bg-white/90 dark:bg-black/80 border-t border-black/[0.08] dark:border-white/10 px-6 pb-4"
           >
             {NAV_LINKS.map(({ label, href }) => {
               const sectionId = href.replace("#", "");
@@ -142,7 +150,7 @@ export default function Navbar() {
               return (
                 <li
                   key={href}
-                  className="py-3 border-b border-white/5 last:border-0"
+                  className="py-3 border-b border-black/[0.05] dark:border-white/5 last:border-0"
                 >
                   <a
                     href={href}

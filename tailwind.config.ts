@@ -6,6 +6,8 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  // Dark mode is toggled by adding the 'dark' class to <html>
+  darkMode: "class",
   theme: {
     extend: {
       colors: {

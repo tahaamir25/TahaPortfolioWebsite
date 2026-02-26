@@ -36,9 +36,9 @@ export default function Hero() {
         {/* My Terminal */}
         <motion.div
           {...fadeUp(0.3)}
-          className="w-full max-w-lg bg-[#111] border border-white/10 rounded-xl overflow-hidden text-left"
+          className="w-full max-w-lg bg-card border border-black/[0.08] dark:border-white/10 rounded-xl overflow-hidden text-left shadow-sm"
         >
-          <div className="flex items-center gap-2 px-4 py-3 border-b border-white/10 bg-[#161616]">
+          <div className="flex items-center gap-2 px-4 py-3 border-b border-black/[0.08] dark:border-white/10 bg-[#f0f0f0] dark:bg-[#161616]">
             <span className="w-3 h-3 rounded-full bg-[#ff5f57]" />
             <span className="w-3 h-3 rounded-full bg-[#febc2e]" />
             <span className="w-3 h-3 rounded-full bg-[#28c840]" />
@@ -65,9 +65,9 @@ export default function Hero() {
                 sequence={[
                   "Software Engineer",
                   2200,
-                  "Cool Guy",
+                  "AI Engineer",
                   2200,
-                  "Possible Bio; Hahaha",
+                  "Full-Stack Developer",
                   2200,
                 ]}
                 repeat={Infinity}
@@ -84,10 +84,7 @@ export default function Hero() {
           </div>
         </motion.div>
 
-=        <motion.div
-          {...fadeUp(0.5)}
-          className="flex flex-col sm:flex-row gap-4"
-        >
+        <motion.div {...fadeUp(0.5)} className="flex flex-col sm:flex-row gap-4">
           <a
             href="/resume.pdf"
             target="_blank"
@@ -98,7 +95,7 @@ export default function Hero() {
           </a>
           <a
             href="#contact"
-            className="px-6 py-3 rounded-md border border-white/20 text-sm font-medium text-muted hover:border-accent hover:text-accent transition-all duration-200"
+            className="px-6 py-3 rounded-md border border-black/[0.12] dark:border-white/20 text-sm font-medium text-muted hover:border-accent hover:text-accent transition-all duration-200"
           >
             Get In Touch
           </a>

@@ -9,7 +9,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Taha Amir's Portfolio — Software Engineer",
+  title: "Taha Amir — Software Engineer",
   description:
     "This is my portfiolio. I am a full-stack developer specializing in AI, Cloud, and Data Science.",
 };
@@ -21,6 +21,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={inter.variable}>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{if(localStorage.getItem('theme')==='dark')document.documentElement.classList.add('dark')}catch(e){}`,
+          }}
+        />
+      </head>
       <body className="font-sans bg-background text-text-primary antialiased">
         {children}
       </body>
