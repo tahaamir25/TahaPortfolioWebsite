@@ -12,6 +12,7 @@ import {
   FiLayers,
   FiBarChart2,
   FiAward,
+  FiSettings,
 } from "react-icons/fi";
 import {
   SiTypescript,
@@ -86,6 +87,22 @@ const categoryBadgeStyle: Record<string, string> = {
 
 const defaultBadgeStyle =
   "border-black/[0.08] dark:border-white/10 bg-black/[0.04] dark:bg-white/5 text-muted hover:border-accent hover:text-text-primary";
+
+type CategoryMeta = { icon: React.ElementType; headerClass: string };
+const categoryMeta: Record<string, CategoryMeta> = {
+  "Languages": {
+    icon: FiCode,
+    headerClass: "text-amber-600 dark:text-amber-400",
+  },
+  "Frameworks & Libraries": {
+    icon: FiLayers,
+    headerClass: "text-accent",
+  },
+  "Tools & Platforms": {
+    icon: FiSettings,
+    headerClass: "text-emerald-600 dark:text-emerald-400",
+  },
+};
 
 const education = [
   {
@@ -177,7 +194,8 @@ const careerInterests: {
 
 const cardGlow =
   "bg-card border border-black/[0.08] dark:border-white/10 rounded-xl " +
-  "hover:border-accent/30 hover:-translate-y-0.5 hover:shadow-[0_0_24px_rgba(41,151,255,0.12)] " +
+  "shadow-sm dark:shadow-none " +
+  "hover:border-accent/30 hover:-translate-y-0.5 hover:shadow-lg dark:hover:shadow-[0_0_28px_rgba(41,151,255,0.15)] " +
   "transition-all duration-300 cursor-default";
 
 const blockVariants = {
@@ -334,12 +352,20 @@ export default function About() {
         <motion.div variants={blockVariants}>
           <SubHeading icon={FiCode}>Technical Skills</SubHeading>
 
-          <div className="space-y-5">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {skillGroups.map(({ category, skills }) => {
               const badgeStyle = categoryBadgeStyle[category] ?? defaultBadgeStyle;
+              const meta = categoryMeta[category];
+              const CatIcon = meta?.icon ?? FiCode;
+              const headerClass = meta?.headerClass ?? "text-muted";
               return (
-                <div key={category}>
-                  <p className="text-muted text-xs tracking-widest uppercase mb-2.5">{category}</p>
+                <div key={category} className={`${cardGlow} p-5`}>
+                  <div className="flex items-center gap-2 mb-4">
+                    <CatIcon size={13} className={headerClass} />
+                    <p className={`text-xs tracking-widest uppercase font-semibold ${headerClass}`}>
+                      {category}
+                    </p>
+                  </div>
                   <div className="flex flex-wrap gap-2">
                     {skills.map((skill) => {
                       const SkillIcon = skillIconMap[skill];

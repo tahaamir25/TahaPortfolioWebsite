@@ -21,7 +21,7 @@ export default function Hero() {
           <p className="text-accent text-xs tracking-[0.3em] uppercase">
             Hey, I&apos;m
           </p>
-          <h1 className="text-5xl md:text-7xl font-bold text-text-primary leading-tight">
+          <h1 className="text-5xl md:text-7xl font-bold leading-tight bg-gradient-to-br from-[#1d1d1f] from-60% to-[#2997ff] dark:from-white dark:from-60% dark:to-accent bg-clip-text text-transparent">
             Taha Amir
           </h1>
         </motion.div>
