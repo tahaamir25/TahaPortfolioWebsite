@@ -15,17 +15,17 @@ export default function SectionHeading({
       <motion.h2
         initial={{ opacity: 0, y: 16 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.55, ease: [0.23, 1, 0.32, 1] }}
-        className="text-4xl md:text-5xl font-bold leading-tight bg-gradient-to-r from-[#1d1d1f] from-60% to-[#2997ff] dark:from-white dark:from-60% dark:to-accent bg-clip-text text-transparent"
+        transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+        className="text-3xl md:text-4xl font-bold leading-tight bg-gradient-to-r from-[#1d1d1f] from-60% to-[#007AFF] dark:from-white dark:from-60% dark:to-[#007AFF] bg-clip-text text-transparent"
       >
         {children}
       </motion.h2>
-      {/*Width shows up on entry*/}
+      {/* Underline bar — grows in on entry */}
       <motion.div
         initial={{ width: 0, opacity: 0 }}
-        animate={inView ? { width: 48, opacity: 1 } : {}}
-        transition={{ duration: 0.5, delay: 0.2, ease: [0.23, 1, 0.32, 1] }}
-        className="h-0.5 bg-gradient-to-r from-accent to-violet-500 mt-3 rounded-full"
+        animate={inView ? { width: 40, opacity: 1 } : {}}
+        transition={{ duration: 0.45, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+        className="h-0.5 bg-gradient-to-r from-accent to-glow mt-3 rounded-full"
       />
     </div>
   );

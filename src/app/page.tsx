@@ -9,13 +9,24 @@ import Contact from "@/components/sections/Contact";
 export default function Home() {
   return (
     <>
+      {/*
+        Ambient background lighting.
+        Base classes = light mode (dim).
+        dark: classes = dark mode default (visible depth).
+        Orbs are fixed so they don't scroll with content.
+      */}
       <div
         className="fixed inset-0 -z-10 overflow-hidden pointer-events-none"
         aria-hidden="true"
       >
-        <div className="absolute -top-60 -left-40 w-[700px] h-[700px] rounded-full bg-violet-400/20 dark:bg-violet-500/10 blur-[130px]" />
-        <div className="absolute top-1/2 -right-60 w-[600px] h-[600px] rounded-full bg-accent/15 dark:bg-accent/8 blur-[120px]" />
-        <div className="absolute -bottom-40 left-20 w-[550px] h-[550px] rounded-full bg-emerald-400/15 dark:bg-emerald-500/8 blur-[120px]" />
+        {/* Top-left — violet */}
+        <div className="absolute -top-32 -left-32 w-[640px] h-[640px] rounded-full bg-violet-500/[0.06] dark:bg-violet-500/[0.18] blur-[150px]" />
+        {/* Upper-right — cyan glow (secondary accent) */}
+        <div className="absolute -top-20 -right-40 w-[500px] h-[500px] rounded-full bg-[#33C1FF]/[0.04] dark:bg-[#33C1FF]/[0.12] blur-[130px]" />
+        {/* Mid-page — accent blue, centered */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] rounded-full bg-accent/[0.03] dark:bg-accent/[0.07] blur-[160px]" />
+        {/* Bottom-left — softer violet */}
+        <div className="absolute -bottom-24 -left-24 w-[500px] h-[500px] rounded-full bg-violet-500/[0.04] dark:bg-violet-500/[0.10] blur-[130px]" />
       </div>
 
       <Navbar />
