@@ -25,7 +25,7 @@ export default function ThemeToggle() {
       whileHover={!prefersReducedMotion ? { scale: 1.12 } : undefined}
       whileTap={!prefersReducedMotion ? { scale: 0.88 } : undefined}
       transition={{ type: "spring", stiffness: 400, damping: 17 }}
-      className="w-8 h-8 rounded-md flex items-center justify-center text-muted hover:text-text-primary transition-colors duration-200"
+      className="w-8 h-8 rounded-full flex items-center justify-center text-muted hover:text-text-primary hover:bg-black/[0.04] dark:hover:bg-white/[0.04] transition-colors duration-200"
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
     >
       {isDark ? <FiSun size={16} /> : <FiMoon size={16} />}

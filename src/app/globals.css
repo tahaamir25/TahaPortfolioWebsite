@@ -2,14 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/*
-  Architecture:
-  - :root   = light mode values (active when .dark class is absent)
-  - .dark   = dark mode values (applied by default via inline script in layout.tsx)
-  Changing one variable re-themes every surface that references it.
-*/
-
-/* ── Light mode ── */
 :root {
   --color-bg:          #f5f5f7;
   --color-surface:     #ffffff;
@@ -22,7 +14,6 @@
   --color-border:      rgba(0, 0, 0, 0.06);
 }
 
-/* ── Dark mode (default) ── */
 .dark {
   --color-bg:          #0c0c0c;
   --color-surface:     #161616;

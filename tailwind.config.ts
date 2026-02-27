@@ -6,14 +6,10 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  // Dark mode toggled by adding/removing the 'dark' class on <html>.
-  // Dark is the default (added by the inline script in layout.tsx).
   darkMode: "class",
   theme: {
     extend: {
       colors: {
-        // All values resolve to CSS variables defined in globals.css.
-        // :root = light mode, .dark = dark mode (default).
         background:   "var(--color-bg)",
         surface:      "var(--color-surface)",
         card:         "var(--color-card)",

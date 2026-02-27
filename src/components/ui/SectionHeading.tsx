@@ -20,7 +20,7 @@ export default function SectionHeading({
       >
         {children}
       </motion.h2>
-      {/* Underline bar — grows in on entry */}
+      {/*Width shows up on entry*/}
       <motion.div
         initial={{ width: 0, opacity: 0 }}
         animate={inView ? { width: 40, opacity: 1 } : {}}
