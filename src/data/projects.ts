@@ -29,9 +29,9 @@ export const projects: Project[] = [
     color: "emerald",
   },
   {
-    title: "Project Title",
+    title: "Project Title1",
     date: "20XX",
-    description: "One-line pitch for this project.",
+    description: "One-line pitch for this project1.",
     longDescription: "Expanded description — problem, solution, impact.",
     features: [
       "Feature 1",

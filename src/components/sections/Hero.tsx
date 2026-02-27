@@ -26,16 +26,9 @@ export default function Hero() {
           </h1>
         </motion.div>
 
-        <motion.p
-          {...fadeUp(0.15)}
-          className="text-muted text-sm md:text-base max-w-md leading-relaxed"
-        >
-          Bio
-        </motion.p>
-
-        {/* My Terminal */}
+        {/* macOS-style terminal for my about me*/}
         <motion.div
-          {...fadeUp(0.3)}
+          {...fadeUp(0.2)}
           className="w-full max-w-lg bg-card border border-black/[0.08] dark:border-white/10 rounded-xl overflow-hidden text-left shadow-sm"
         >
           <div className="flex items-center gap-2 px-4 py-3 border-b border-black/[0.08] dark:border-white/10 bg-[#f0f0f0] dark:bg-[#161616]">
@@ -47,6 +40,7 @@ export default function Hero() {
             </span>
           </div>
 
+          {/* Terminal body */}
           <div className="px-5 py-4 font-mono text-sm space-y-1.5">
             <p>
               <span className="text-accent">taha@portfolio</span>
@@ -54,6 +48,16 @@ export default function Hero() {
               <span className="text-text-primary">whoami</span>
             </p>
             <p className="text-muted pl-2">Taha Amir — Software Engineer</p>
+
+            <p className="pt-1">
+              <span className="text-accent">taha@portfolio</span>
+              <span className="text-muted"> ~ % </span>
+              <span className="text-text-primary">cat about.txt</span>
+            </p>
+            <p className="text-muted pl-2 leading-relaxed">
+              CS graduate &amp; software engineer passionate about AI,
+              full-stack engineering, and building products that matter.
+            </p>
 
             <p className="pt-1">
               <span className="text-accent">taha@portfolio</span>
@@ -84,7 +88,7 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        <motion.div {...fadeUp(0.5)} className="flex flex-col sm:flex-row gap-4">
+        <motion.div {...fadeUp(0.4)} className="flex flex-col sm:flex-row gap-4">
           <a
             href="/resume.pdf"
             target="_blank"

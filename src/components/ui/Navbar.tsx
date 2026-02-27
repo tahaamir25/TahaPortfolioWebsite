@@ -1,12 +1,36 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { HiMenu, HiX } from "react-icons/hi";
 import { FiUser, FiBriefcase, FiCode, FiMail } from "react-icons/fi";
 import type { IconType } from "react-icons";
-import { NAV_LINKS } from "@/lib/constants";
+import { NAV_LINKS, PROFILE_PHOTO } from "@/lib/constants";
 import ThemeToggle from "@/components/ui/ThemeToggle";
+
+function NavAvatar() {
+  const [photoFailed, setPhotoFailed] = useState(false);
+
+  if (!PROFILE_PHOTO || photoFailed) {
+    return (
+      <span className="w-9 h-9 rounded-full bg-accent/10 border-2 border-accent/25 flex items-center justify-center text-accent text-sm font-bold tracking-tight">
+        TA
+      </span>
+    );
+  }
+
+  return (
+    <Image
+      src={PROFILE_PHOTO}
+      alt="Taha Amir"
+      width={36}
+      height={36}
+      className="w-9 h-9 rounded-full border-2 border-accent/25 object-cover"
+      onError={() => setPhotoFailed(true)}
+    />
+  );
+}
 
 const navIconMap: Record<string, IconType> = {
   about: FiUser,
@@ -62,10 +86,10 @@ export default function Navbar() {
 
         <a
           href="#"
-          className="w-8 h-8 rounded-md bg-accent/10 border border-accent/20 flex items-center justify-center text-accent text-sm font-bold tracking-tight hover:bg-accent/20 transition-colors duration-200"
+          className="flex items-center hover:opacity-80 transition-opacity duration-200"
           aria-label="Back to top"
         >
-          TA
+          <NavAvatar />
         </a>
 
         <div className="hidden md:flex items-center gap-1">

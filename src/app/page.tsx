@@ -9,11 +9,6 @@ import Contact from "@/components/sections/Contact";
 export default function Home() {
   return (
     <>
-      {/*
-        Decorative background orbs — fixed behind all content.
-        Soft radial gradients in violet, blue, and emerald give the page
-        a Stripe/kazmainshah-style colourful depth without being noisy.
-      */}
       <div
         className="fixed inset-0 -z-10 overflow-hidden pointer-events-none"
         aria-hidden="true"

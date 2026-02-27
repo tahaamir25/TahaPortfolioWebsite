@@ -8,6 +8,13 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import { experiences } from "@/data/experience";
 import type { ExperienceColor } from "@/data/experience";
 
+const cardBorderWrapper: Record<ExperienceColor, string> = {
+  blue:    "p-[1px] rounded-xl bg-gradient-to-r from-accent/55 via-accent/20 to-accent/5 shadow-sm dark:shadow-none hover:-translate-y-0.5 hover:shadow-lg dark:hover:shadow-[0_0_28px_rgba(41,151,255,0.12)] transition-all duration-300 cursor-default",
+  violet:  "p-[1px] rounded-xl bg-gradient-to-r from-violet-500/55 via-violet-500/20 to-violet-500/5 shadow-sm dark:shadow-none hover:-translate-y-0.5 hover:shadow-lg dark:hover:shadow-[0_0_28px_rgba(124,58,237,0.12)] transition-all duration-300 cursor-default",
+  emerald: "p-[1px] rounded-xl bg-gradient-to-r from-emerald-500/55 via-emerald-500/20 to-emerald-500/5 shadow-sm dark:shadow-none hover:-translate-y-0.5 hover:shadow-lg dark:hover:shadow-[0_0_28px_rgba(16,185,129,0.12)] transition-all duration-300 cursor-default",
+  amber:   "p-[1px] rounded-xl bg-gradient-to-r from-amber-500/55 via-amber-500/20 to-amber-500/5 shadow-sm dark:shadow-none hover:-translate-y-0.5 hover:shadow-lg dark:hover:shadow-[0_0_28px_rgba(245,158,11,0.12)] transition-all duration-300 cursor-default",
+};
+
 const accentStyles: Record<
   ExperienceColor,
   { dot: string; border: string; company: string; tag: string }
@@ -74,9 +81,8 @@ export default function Experience() {
                   className={`w-3.5 h-3.5 rounded-full border-2 flex-shrink-0 mt-4 z-10 ${style.dot}`}
                 />
 
-                <div
-                  className={`flex-1 bg-card border border-black/[0.08] dark:border-white/10 border-l-4 ${style.border} rounded-xl p-5 shadow-sm dark:shadow-none hover:-translate-y-0.5 hover:shadow-lg dark:hover:shadow-[0_0_28px_rgba(41,151,255,0.12)] transition-all duration-300 cursor-default`}
-                >
+                <div className={`flex-1 ${cardBorderWrapper[exp.color]}`}>
+                <div className="bg-card rounded-[11px] p-5 h-full">
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-3">
                     <div>
                       <p className={`font-bold text-base leading-snug ${style.company}`}>
@@ -115,6 +121,7 @@ export default function Experience() {
                       </span>
                     ))}
                   </div>
+                </div>
                 </div>
               </motion.div>
             );
